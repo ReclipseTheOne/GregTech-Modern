@@ -94,4 +94,24 @@ public class EnergyContainerList implements IEnergyContainer {
     public boolean outputsEnergy(Direction side) {
         return true;
     }
+
+    @Override
+    public long getInputPerSec() {
+        long sum = 0;
+        List<? extends IEnergyContainer> energyContainerList = this.energyContainerList;
+        for (IEnergyContainer iEnergyContainer : energyContainerList) {
+            sum += iEnergyContainer.getInputPerSec();
+        }
+        return sum;
+    }
+
+    @Override
+    public long getOutputPerSec() {
+        long sum = 0;
+        List<? extends IEnergyContainer> energyContainerList = this.energyContainerList;
+        for (IEnergyContainer iEnergyContainer : energyContainerList) {
+            sum += iEnergyContainer.getOutputPerSec();
+        }
+        return sum;
+    }
 }
